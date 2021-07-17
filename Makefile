@@ -68,11 +68,14 @@ appimagetool:
 override SDL2_PATH := SDL2-$(SDL2_BRANCH)
 
 $(SDL2_PATH)/configure:
-	git clone --depth 1 -b $(SDL2_BRANCH) https://github.com/libsdl-org/SDL $(SDL2_PATH)
+	#git clone --depth 1 -b $(SDL2_BRANCH) https://github.com/libsdl-org/SDL $(SDL2_PATH)
+	git clone --depth 1 -b $(SDL2_BRANCH) https://github.com/AreaScout/SDL $(SDL2_PATH)
 
 $(SDL2_PATH)/build/Makefile: $(SDL2_PATH)/configure
+	cd $(SDL2_PATH) 
+	./autogen.sh
 	mkdir -p $(SDL2_PATH)/build
-	cd $(SDL2_PATH)/build && $(CONFIGURE) --disable-video-wayland
+	cd $(SDL2_PATH)/build && $(CONFIGURE) --disable-video-opengl --disable-video-wayland --enable-video-kmsdrm
 
 installdir/lib/libSDL2.so: $(SDL2_PATH)/build/Makefile
 	cd $(SDL2_PATH)/build && $(MAKE) install -j$(NUMBER_OF_PROCESSORS)
