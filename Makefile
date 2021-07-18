@@ -297,7 +297,8 @@ installdir/lib/libluajit-5.1.so: $(LUAJIT_PATH)/Makefile
 override LOVE_PATH := love2d-$(LOVE_BRANCH)
 
 $(LOVE_PATH)/CMakeLists.txt:
-	git clone --depth 1 -b $(LOVE_BRANCH) https://github.com/love2d/love $(LOVE_PATH)
+	#git clone --depth 1 -b $(LOVE_BRANCH) https://github.com/love2d/love $(LOVE_PATH)
+	git clone https://github.com/christianhaitian/love $(LOVE_PATH)
 
 $(LOVE_PATH)/configure: $(LOVE_PATH)/CMakeLists.txt installdir/lib/libluajit-5.1.so installdir/lib/libmodplug.so installdir/lib/libmpg123.so installdir/lib/libfreetype.so installdir/lib/libopenal.so installdir/lib/libz.so installdir/lib/libtheora.so installdir/lib/libvorbis.so installdir/lib/libogg.so installdir/lib/libSDL2.so
 	cd $(LOVE_PATH) && bash platform/unix/genmodules
