@@ -69,7 +69,7 @@ override SDL2_PATH := SDL2-$(SDL2_BRANCH)
 
 $(SDL2_PATH)/configure:
 	#git clone --depth 1 -b $(SDL2_BRANCH) https://github.com/libsdl-org/SDL $(SDL2_PATH)
-	git clone --depth 1 -b $(SDL2_BRANCH) https://github.com/AreaScout/SDL $(SDL2_PATH)
+	git clone https://github.com/AreaScout/SDL $(SDL2_PATH)
 
 $(SDL2_PATH)/build/Makefile: $(SDL2_PATH)/configure
 	cd $(SDL2_PATH) 
